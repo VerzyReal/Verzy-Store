@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="id"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;background-color:#0a0e18;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"tertiary-fixed":"#c5e7ff","on-secondary-container":"#95d5ff","on-surface":"#dfe2f1","on-surface-variant":"#94a3b8","outline":"#3c494e","on-background":"#dfe2f1","primary":"#00d2ff","on-tertiary-container":"#005576","on-secondary-fixed-variant":"#004c6b","inverse-surface":"#dfe2f1","surface-container-low":"#121929","primary-fixed-dim":"#47d6ff","secondary-container":"#003b57","on-error-container":"#ffdad6","inverse-on-surface":"#2c303b","surface-container-lowest":"#0a0e18","on-secondary-fixed":"#001e2d","surface-container-high":"#1e283d","tertiary":"#b9e3ff","error-container":"#93000a","surface-tint":"#47d6ff","surface-variant":"#172036","outline-variant":"#1e293b","surface-container-highest":"#25324d","on-tertiary":"#00344a","surface-container":"#151d30","surface-bright":"#2d3a56","secondary-fixed":"#c6e7ff","on-primary-container":"#001f28","background":"#0a0e18","tertiary-fixed-dim":"#8ecef6","secondary":"#8bcef9","on-primary":"#002b38","on-primary-fixed-variant":"#004e60","on-primary-fixed":"#001f28","tertiary-container":"#89c9f0","secondary-fixed-dim":"#8bcef9","primary-container":"#00d2ff","on-secondary":"#00344b","inverse-primary":"#00677f","primary-fixed":"#b6ebff","surface":"#0a0e18","on-tertiary-fixed-variant":"#004c6a","on-tertiary-fixed":"#001e2d","surface-dim":"#0a0e18","on-error":"#690005","error":"#ffb4ab"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-lg":"1.5rem","space-sm":"0.5rem","space-md":"1rem","gutter-mobile":"0.75rem","margin":"2rem","gutter":"1rem","margin-mobile":"1rem","space-xs":"0.25rem","space-xl":"2.5rem"},fontFamily:{"body-sm":["Plus Jakarta Sans"],"body-lg":["Plus Jakarta Sans"],"headline-lg":["Space Grotesk"],"label-sm":["Plus Jakarta Sans"],"headline-xl-mobile":["Space Grotesk"],"headline-md":["Space Grotesk"],"headline-lg-mobile":["Space Grotesk"],"headline-xl":["Space Grotesk"],"label-lg":["Plus Jakarta Sans"],"body-md":["Plus Jakarta Sans"],"headline-sm":["Space Grotesk"],"label-md":["Plus Jakarta Sans"]},fontSize:{"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"headline-lg":["32px",{lineHeight:"40px",fontWeight:"700"}],"label-sm":["10px",{lineHeight:"14px",fontWeight:"700"}],"headline-xl-mobile":["30px",{lineHeight:"38px",fontWeight:"700"}],"headline-md":["22px",{lineHeight:"28px",fontWeight:"600"}],"headline-lg-mobile":["24px",{lineHeight:"32px",fontWeight:"700"}],"headline-xl":["40px",{lineHeight:"48px",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-sm":["18px",{lineHeight:"24px",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-cyan-500/30 selection:text-cyan-200"><header class="fixed top-0 left-0 w-full z-50 bg-[#0a0e18]/90 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_24px_rgba(0,210,255,0.06)]"><div class="h-20 max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between"><a class="flex items-center gap-space-xs group" data-path="beranda" href="#"><span class="font-headline-lg text-headline-lg tracking-tight text-white flex items-center">Verzy<span class="text-primary drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]">Store</span></span><span class="inline-flex items-center justify-center ml-1.5 px-2 py-0.5 rounded-full bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 font-label-sm text-label-sm uppercase tracking-wider shadow-[0_0_8px_rgba(0,210,255,0.2)]">TOPUP</span></a><nav class="hidden lg:flex items-center gap-space-md" data-active-classes="bg-cyan-500/10 text-primary border border-cyan-500/30 font-label-md rounded-xl"><a aria-current="page" class="px-space-md py-space-xs transition-all bg-cyan-500/10 text-primary border border-cyan-500/30 font-label-md rounded-xl shadow-[0_0_12px_rgba(0,210,255,0.15)]" data-path="beranda" href="#">Beranda</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all" data-path="tentang-kami" href="#">Tentang Kami</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all" data-path="layanan-game" href="#">Layanan &amp; Game</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all" data-path="berita-promo" href="#">Berita &amp; Promo</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-slate-400 hover:text-white hover:bg-slate-800/60 transition-all" data-path="kontak" href="#">Kontak</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center justify-center px-space-lg py-2.5 rounded-xl bg-gradient-to-r from-[#00d2ff] to-[#086288] text-slate-950 font-bold font-headline-sm text-headline-sm shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:shadow-[0_0_28px_rgba(0,210,255,0.65)] hover:brightness-110 transition-all" data-path="masuk" href="#">Masuk / Login</a><div class="w-8 h-8 rounded-full bg-slate-800 border border-cyan-500/30 flex items-center justify-center shadow-[0_0_10px_rgba(0,210,255,0.2)] text-primary"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-[#0a0e18] min-h-[calc(100vh-80px)]"><div class="flex flex-col w-full">
+<!-- SECTION 1: HERO -->
+<section class="relative w-full overflow-hidden bg-[#0a0e18] py-12 lg:py-20">
+<!-- Cyber Glow Accents -->
+<div class="absolute -top-32 right-10 w-96 h-96 rounded-full bg-cyan-500/10 blur-[110px] pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 w-80 h-80 rounded-full bg-blue-600/15 blur-[100px] pointer-events-none"></div>
+<div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-25 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Hero Copy -->
+<div class="lg:col-span-6 flex flex-col gap-6">
+<div class="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-[#121929] border border-cyan-500/30 text-cyan-300 font-label-md text-label-md shadow-[0_0_12px_rgba(0,210,255,0.15)]">
+<span class="inline-block w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#00d2ff]"></span>
+            Platform Top-Up #1 Gamers Indonesia
+          </div>
+<div class="flex flex-col gap-3">
+<h1 class="font-headline-xl text-headline-xl text-white leading-tight tracking-tight">
+              Top Up Game Cepat, Hemat, &amp; <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 drop-shadow-[0_0_15px_rgba(0,210,255,0.3)]">100% Legal</span>
+</h1>
+<p class="font-body-lg text-body-lg text-slate-300 max-w-xl">
+              Solusi instan isi ulang diamond, voucher game favorit, dan item digital dalam hitungan detik dengan metode pembayaran terlengkap 24/7.
+            </p>
+</div>
+<!-- CTAs -->
+<div class="flex flex-wrap items-center gap-4 pt-2">
+<a class="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#00d2ff] to-[#086288] text-slate-950 font-bold font-headline-sm text-headline-sm shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:shadow-[0_0_30px_rgba(0,210,255,0.7)] hover:brightness-110 transition-all group" href="#layanan">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span class="">Mulai Top Up Sekarang</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-[#121929] border border-cyan-500/30 text-cyan-300 font-headline-sm text-headline-sm hover:bg-[#172036] hover:border-cyan-400/60 hover:text-white transition-all shadow-[0_0_12px_rgba(0,210,255,0.1)]" href="#promo">
+<span class="">Jelajahi Promo Game</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</div>
+<!-- Quick Trust Badges -->
+<div class="grid grid-cols-3 gap-3 pt-6 max-w-lg">
+<div class="p-3 rounded-xl bg-[#121929] border border-cyan-500/20 shadow-sm flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary drop-shadow-[0_0_8px_rgba(0,210,255,0.4)]">500K+</span>
+<span class="font-body-sm text-body-sm text-slate-400">Transaksi Berhasil</span>
+</div>
+<div class="p-3 rounded-xl bg-[#121929] border border-cyan-500/20 shadow-sm flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary drop-shadow-[0_0_8px_rgba(0,210,255,0.4)]">3-15 dtk</span>
+<span class="font-body-sm text-body-sm text-slate-400">Kecepatan Pengiriman</span>
+</div>
+<div class="p-3 rounded-xl bg-[#121929] border border-cyan-500/20 shadow-sm flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary drop-shadow-[0_0_8px_rgba(0,210,255,0.4)]">4.9 / 5.0</span>
+<span class="font-body-sm text-body-sm text-slate-400">Kepuasan Pelanggan</span>
+</div>
+</div>
+</div>
+<!-- Right Hero Visual -->
+<div class="lg:col-span-6 relative flex items-center justify-center">
+<div class="relative w-full max-w-lg rounded-2xl overflow-hidden shadow-[0_0_35px_rgba(0,210,255,0.18)] bg-[#121929] border border-cyan-500/30 p-2">
+<img alt="Verzy Store Gaming Top Up Showcase" class="w-full h-auto rounded-xl object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrCk3tYdCf0ujWPlPI8_K3qmAgqPIbTsZlgqDvtSBo_BJ-HFOUvn7Jt2-BKuFOk2tXyBgkZgmlId8GRjVtNKdBFK_fTjvGmlWrnMk0njME4rYPI7w2QagpiXWH-iT7SREnht21L10qvHzQ3OOLR0dcO50FXikaxlJtAss24HX2K8fo3CEolqScrso9T4EfL-w3CNM9lbACRKfkMm_ED2on-qVm9FQLHl4BlPQB0lr56g"/>
+<!-- Floating Achievement Badges -->
+<div class="absolute top-6 left-6 px-3.5 py-2 rounded-xl bg-[#0a0e18]/90 border border-cyan-500/30 backdrop-blur-md shadow-md flex items-center gap-2 text-cyan-300 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px] text-primary" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+<span class="">⚡ Proses 5 Detik</span>
+</div>
+<div class="absolute bottom-6 left-6 px-3.5 py-2 rounded-xl bg-[#0a0e18]/90 border border-cyan-500/30 backdrop-blur-md shadow-md flex items-center gap-2 text-cyan-300 font-label-md text-label-md">
+<span class="material-symbols-outlined text-[20px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="">🛡️ Garansi Anti-Banned</span>
+</div>
+<div class="absolute top-1/2 -right-2 -translate-y-1/2 hidden sm:flex px-4 py-2.5 rounded-xl bg-[#0a0e18]/95 border border-cyan-500/40 backdrop-blur-md shadow-lg flex-col gap-0.5 font-label-md text-label-md text-white">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-headline-sm text-headline-sm text-white">4.9 / 5</span>
+</div>
+<span class="font-body-sm text-body-sm text-slate-400">Rating 120k Gamers</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: ABOUT US -->
+<section class="w-full bg-[#0f1422] border-y border-cyan-500/10 py-16 lg:py-24 relative" id="tentang-kami">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-14">
+<div class="flex flex-col items-center text-center gap-3">
+<span class="px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-label-sm text-label-sm uppercase tracking-wider shadow-[0_0_10px_rgba(0,210,255,0.15)]">
+          TENTANG VERZY STORE
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-white max-w-2xl">
+          Partner Terpercaya Jutaan Gamers Indonesia Sejak 2021
+        </h2>
+<p class="font-body-md text-body-md text-slate-300 max-w-2xl">
+          Verzy Store lahir dari komunitas gamer yang mengutamakan kecepatan transaksi otomatis, keamanan akun pelanggan, dan harga paling ramah di kantong pelajar hingga pro player esports di seluruh Nusantara.
+        </p>
+</div>
+<!-- Main Layout: Team Photo + Strengths -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<!-- Team Photo Showcase -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<div class="relative rounded-2xl overflow-hidden shadow-md bg-[#121929] border border-cyan-500/25">
+<img alt="Tim Verzy Store Headquarters" class="w-full h-80 object-cover" src="https://lh3.googleusercontent.com/aida/ALJJyrAfosmtW3SYTVyHwIfM6XqJNvn9OTSTZf3VGblstU40d0Snyiylb2JgRLHZLzfovSVlUsze1w8PgiGkhqrmmIorDOPhCwBl1Oy6PEHSOe2GpeSahso6NFifLgN44gDuSB_sa0bbpTPy2l99ljE4w-WGtVML7PGVToFmbGvby8TqVFDK6wFbnA3QI8YkY_azGqX8rttlV1-0_VrybWX_pVsmDBm6CXNEb7xBA5Nv4X_q"/>
+<div class="p-4 bg-[#121929] border-t border-cyan-500/20 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white">Tim Support &amp; Operasional</span>
+<span class="font-body-sm text-body-sm text-slate-400">Gedung Cyber 2 Tower, Kuningan Jakarta</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                24/7 Aktif
+              </span>
+</div>
+</div>
+</div>
+<!-- 3 Key Strengths -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<!-- Strength 1 -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_20px_rgba(0,210,255,0.15)] transition-all flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center shrink-0 text-primary shadow-[0_0_10px_rgba(0,210,255,0.2)]">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">speed</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-white">Instant Delivery Otomatis</h3>
+<p class="font-body-md text-body-md text-slate-300">
+                Diamond &amp; item langsung masuk akun dalam 3–15 detik tanpa antre manual berkat integrasi API cloud gaming berkecepatan tinggi.
+              </p>
+</div>
+</div>
+<!-- Strength 2 -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_20px_rgba(0,210,255,0.15)] transition-all flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center shrink-0 text-primary shadow-[0_0_10px_rgba(0,210,255,0.2)]">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-white">100% Legal &amp; Resmi</h3>
+<p class="font-body-md text-body-md text-slate-300">
+                Seluruh voucher bersumber langsung dari publisher resmi (Moonton, Garena, Riot Games, Hoyoverse). Bebas banned permanen dan aman selamanya.
+              </p>
+</div>
+</div>
+<!-- Strength 3 -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_20px_rgba(0,210,255,0.15)] transition-all flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-cyan-950/80 border border-cyan-500/40 flex items-center justify-center shrink-0 text-primary shadow-[0_0_10px_rgba(0,210,255,0.2)]">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">support_agent</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="font-headline-sm text-headline-sm text-white">Layanan Siaga 24/7</h3>
+<p class="font-body-md text-body-md text-slate-300">
+                Customer support gamer berpengalaman siap memandu melalui live WhatsApp dan Discord kapan saja saat kamu membutuhkan bantuan.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: SERVICES -->
+<section class="w-full bg-[#0a0e18] py-16 lg:py-24" id="layanan">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="flex flex-col gap-2 max-w-xl">
+<span class="px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-label-sm text-label-sm uppercase tracking-wider self-start shadow-[0_0_10px_rgba(0,210,255,0.15)]">
+            KATALOG LENGKAP
+          </span>
+<h2 class="font-headline-lg text-headline-lg text-white">
+            Layanan &amp; Ekosistem Game Verzy Store
+          </h2>
+<p class="font-body-md text-body-md text-slate-300">
+            Pilihan isi ulang lengkap untuk judul game mobile, PC, konsol, dan voucher hiburan digital terpopuler.
+          </p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1.5 rounded-lg bg-cyan-500/20 border border-cyan-500/40 text-cyan-300 font-label-sm text-label-sm shadow-[0_0_10px_rgba(0,210,255,0.15)]">Semua Judul</span>
+<span class="px-3 py-1.5 rounded-lg bg-[#121929] border border-slate-800 text-slate-400 hover:text-white hover:border-cyan-500/30 font-label-sm text-label-sm cursor-pointer transition-colors">Mobile</span>
+<span class="px-3 py-1.5 rounded-lg bg-[#121929] border border-slate-800 text-slate-400 hover:text-white hover:border-cyan-500/30 font-label-sm text-label-sm cursor-pointer transition-colors">PC &amp; Konsol</span>
+</div>
+</div>
+<!-- 6 Interactive Feature Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: MLBB -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_24px_rgba(0,210,255,0.18)] transition-all flex flex-col justify-between group">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<img alt="Mobile Legends" class="w-12 h-12 rounded-xl object-cover shadow-sm ring-1 ring-cyan-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAN-L6qY0yg9k7gsMMMvPXAVBxwIEUX95OA6HoqzuO0U07mkkijzxYqvSaBxfV9gTaANkCxb-xW-FtuUS1K-8QojYm_X84HPG1Y-2dyPJ6WEbQeNoL2hH8MxJynPC7uu002_gg1phyqrPhTRQIEgMz7QQojfDc5uDZ_mY1F2oJI9oA_TQJp0y1YhqBzxv9I6OESZAlFFclAZpAKbO5vnCsq5_ezHYfRARA6CTDNcuf6HU2zRqk-mvtDWw"/>
+<span class="px-2.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-label-sm text-label-sm uppercase">Terpopuler</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">Mobile Legends: Bang Bang</h3>
+<p class="font-body-sm text-body-sm text-slate-400 mt-1.5">
+                Top up Diamond, Weekly Diamond Pass, dan Twilight Pass termurah proses instan masuk langsung ke User ID.
+              </p>
+</div>
+</div>
+<div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Mulai Rp 1.500</span>
+<span class="font-label-sm text-label-sm text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1">Top Up <span class="material-symbols-outlined text-[16px]">chevron_right</span></span>
+</div>
+</div>
+<!-- Card 2: Free Fire -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_24px_rgba(0,210,255,0.18)] transition-all flex flex-col justify-between group">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<img alt="Free Fire" class="w-12 h-12 rounded-xl object-cover shadow-sm ring-1 ring-cyan-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpwHBwOstaMuu3SV71qUqC_z7-WVGyv4-UFaA-9o1PV3Xhjp6p2QX5rwZZeIE9J6y1UJ8rw0xkoiCjvHYVNtXSliBtpN4hlRdGHYUSUUUI1teBaGgx9NVqeL1x3JK7K448diKu9_46m9_-hLHizHmmxNTX3w9TYHDss-Xe3UFeLbzY0ZrgXiOQx2r3S2xSgqto8faRVUN1PQoM31ReZTw77qw54OKE9D7q1bACRfgM-W4nL2H_fcSNgg"/>
+<span class="px-2.5 py-1 rounded-full bg-amber-950/70 border border-amber-500/30 text-amber-300 font-label-sm text-label-sm uppercase">Flash Sale</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">Free Fire &amp; FF MAX</h3>
+<p class="font-body-sm text-body-sm text-slate-400 mt-1.5">
+                Diamond resmi Garena FF dengan bonus event mingguan dan membership bulanan langsung via nomor ID karakter.
+              </p>
+</div>
+</div>
+<div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Mulai Rp 1.000</span>
+<span class="font-label-sm text-label-sm text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1">Top Up <span class="material-symbols-outlined text-[16px]">chevron_right</span></span>
+</div>
+</div>
+<!-- Card 3: PUBG & HoK -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_24px_rgba(0,210,255,0.18)] transition-all flex flex-col justify-between group">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<img alt="PUBG Mobile" class="w-12 h-12 rounded-xl object-cover shadow-sm ring-1 ring-cyan-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbLY4U0RSzA0AEwlW_5r7n7rqQsZiShI4TMlafKFTFRENaDxPkm62sLXleixLxiE9XS89upDn8ZP_51wNNJkTgMnYn9yd6eQekDsZ1kZq36jMG5xUnx_wRRsquSvWPgvM1Qi_OTNd9DXJrszIh9v5MQhKizr2qACrFDywOCQ5LnXhvg3-uPXfBgmE6Hz7vuQ0vC3r4rcNk7r5ks45_WQ-KsuVyfNtuLPyukxo_fuQ8VHRCl0ebD_Z-ZA"/>
+<span class="px-2.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-label-sm text-label-sm uppercase">Otomatis UID</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">PUBG Mobile &amp; Honor of Kings</h3>
+<p class="font-body-sm text-body-sm text-slate-400 mt-1.5">
+                Unknown Cash (UC) PUBG dan Tokens HoK resmi langsung masuk UID tanpa perlu password atau login akun.
+              </p>
+</div>
+</div>
+<div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Mulai Rp 12.000</span>
+<span class="font-label-sm text-label-sm text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1">Top Up <span class="material-symbols-outlined text-[16px]">chevron_right</span></span>
+</div>
+</div>
+<!-- Card 4: Hoyoverse -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_24px_rgba(0,210,255,0.18)] transition-all flex flex-col justify-between group">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<img alt="Genshin Impact" class="w-12 h-12 rounded-xl object-cover shadow-sm ring-1 ring-cyan-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACIIWWLbIiLCq-wfLZtxO6_hYx6hC8V_sq7v9xYGs8Ylc9a08-Xy6YMps10oOEsivjfbUNEBojI601J-R6AFbUWaKSBI8rFStorloxgUj0j5z1PwUt5gUeTz51lPytWK1DL1OErW9yLX7Qv2QW0YZNuzxlYwjLRWHW3CjfZmsYTcxr2VyOL4vekkvihL4HV8tyxrtT1zLjcGnB6KxS8cQmfZnkAV9F9uTX5zvfzbW9W0XkVg7XKPqNkw"/>
+<span class="px-2.5 py-1 rounded-full bg-purple-950/70 border border-purple-500/30 text-purple-300 font-label-sm text-label-sm uppercase">Legal Hoyo</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">Genshin Impact &amp; Star Rail</h3>
+<p class="font-body-sm text-body-sm text-slate-400 mt-1.5">
+                Genesis Crystal, Oneiric Shards, Blessing of the Welkin Moon, dan Express Supply Pass via UID server resmi.
+              </p>
+</div>
+</div>
+<div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Mulai Rp 14.500</span>
+<span class="font-label-sm text-label-sm text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1">Top Up <span class="material-symbols-outlined text-[16px]">chevron_right</span></span>
+</div>
+</div>
+<!-- Card 5: Valorant & Steam -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_24px_rgba(0,210,255,0.18)] transition-all flex flex-col justify-between group">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<img alt="Valorant" class="w-12 h-12 rounded-xl object-cover shadow-sm ring-1 ring-cyan-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO2R6wRK9hkQCCqNDHKp1HyON6YKTDuIWWNpJRC8Qy6DotKIgHQvZs-CfVfy0de5HVrqHvLOVACr3zGXcihDjyJ5VrwhM52Bbgzg0Zl1gRHaCshooRHl9Sh3KY1-XcDlHxfmmAjuhUtrkJ1dnaaS00-BSx1NowMkNemCAEs92bMSg2zdkYlP53gPt3v05IdgbUfHnWyqVhXHpLpniaJdMxEDcqz80vzgixaCnw2nHWtFZ0_HcKccUD7w"/>
+<span class="px-2.5 py-1 rounded-full bg-rose-950/70 border border-rose-500/30 text-rose-300 font-label-sm text-label-sm uppercase">PC Gaming</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">Valorant Points &amp; Steam Wallet</h3>
+<p class="font-body-sm text-body-sm text-slate-400 mt-1.5">
+                Redeem code instan untuk VP Riot Games dan voucher saldo Steam IDR resmi tanpa biaya tersembunyi.
+              </p>
+</div>
+</div>
+<div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Mulai Rp 15.000</span>
+<span class="font-label-sm text-label-sm text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1">Top Up <span class="material-symbols-outlined text-[16px]">chevron_right</span></span>
+</div>
+</div>
+<!-- Card 6: Digital Voucher -->
+<div class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm hover:shadow-[0_0_24px_rgba(0,210,255,0.18)] transition-all flex flex-col justify-between group">
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<img alt="Voucher Digital &amp; Langganan" class="w-12 h-12 rounded-xl object-cover shadow-sm ring-1 ring-cyan-500/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuU9gfuywR_h8SJOzEypiTXM5wTdJK57P5iuWlJIySMveQ34uCU3Sk4DJflGnBLzd4hGOdyIpDK7kX1CFp82SUQfKw4AmMYj1-hEAS_I1vOq25BcJMQNI0xuZPJUYc7rYzqo3Br9dU4muCLIMqYRN5cvoktmm_ui9LL6ubL_Rwl6jsBo_YJZoceK49TXO1julSGOtkDIaMJrPhnMpwECjhy8N6wdyuk0kOZvbgS_2zUeZbSS9Gf33bTA"/>
+<span class="px-2.5 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/30 text-emerald-300 font-label-sm text-label-sm uppercase">Entertainment</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors">Voucher Digital &amp; Langganan</h3>
+<p class="font-body-sm text-body-sm text-slate-400 mt-1.5">
+                Saldo Google Play, PlayStation Store Gift Card, Discord Nitro, dan voucher Spotify Premium dengan harga agen.
+              </p>
+</div>
+</div>
+<div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Mulai Rp 10.000</span>
+<span class="font-label-sm text-label-sm text-cyan-300 group-hover:translate-x-1 transition-transform flex items-center gap-1">Top Up <span class="material-symbols-outlined text-[16px]">chevron_right</span></span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: NEWS & PROMO -->
+<section class="w-full bg-[#0f1422] border-y border-cyan-500/10 py-16 lg:py-24" id="promo">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-12">
+<div class="flex flex-col items-center text-center gap-3">
+<span class="px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-label-sm text-label-sm uppercase tracking-wider shadow-[0_0_10px_rgba(0,210,255,0.15)]">
+          UPDATE &amp; PENAWARAN
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-white">
+          Berita, Tips Gaming &amp; Promo Spesial
+        </h2>
+<p class="font-body-md text-body-md text-slate-300 max-w-2xl">
+          Update info turnamen, event diskon mingguan, dan tips meta game terhangat langsung dari tim editorial Verzy Store.
+        </p>
+</div>
+<!-- 3 Rich Article Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Promo Card 1 -->
+<article class="flex flex-col rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm overflow-hidden hover:shadow-[0_0_24px_rgba(0,210,255,0.15)] transition-all group">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Vibrant esports banner showcasing glowing diamonds, futuristic neon cyan sparkles, Indonesian game voucher promotional background with high contrast blue tones" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFh66U2Thkm4Zces9OKw17-HwIEXX42wIrYcaCORYuGoGTSUj-FegJJwcg6Gp4vghJRoQEis2-pFXHj7SYuXaJ_6SfXvxmy8CrqjMLlCiQIuc1Xrce74IoSqsnxJeXSibdEGzFe3Fj3Z1IgpRI-kwTXffP4rxnP7sbjUkGJR7Uous4m0uac1Oex5ZDazQ1bPgigcr_SBbzgTH2uqpWuuICeCW-SGGeCX0J9w2HcZg1')">
+<span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#0a0e18]/90 border border-cyan-500/30 backdrop-blur-md text-cyan-300 font-label-sm text-label-sm uppercase shadow-sm">
+              Promo Spesial
+            </span>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-slate-400">24 Oktober 2025</span>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors leading-snug">
+                Diskon Gajian: Cashback hingga 30% Top Up Mobile Legends Pakai QRIS
+              </h3>
+<p class="font-body-sm text-body-sm text-slate-400 line-clamp-3">
+                Dapatkan bonus diamond melimpah untuk persiapan gacha skin kolektor terbaru akhir bulan ini. Berlaku untuk seluruh e-wallet dan m-banking.
+              </p>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-cyan-200 transition-colors" href="#">
+              Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Promo Card 2 -->
+<article class="flex flex-col rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm overflow-hidden hover:shadow-[0_0_24px_rgba(0,210,255,0.15)] transition-all group">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="High tech gaming monitor displaying MOBA game strategy dashboard with tactical maps, blue data telemetry, and competitive gaming analysis aesthetic" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9ySyk8h6gHAlMkYO3wy5tkx5-qyaOl0qtdXlGfUECxHhg1wggWciswwx9ql_fYGD5dujFHUIPfkKg-PB6_TbdtwGpTLkiKBFdI9Tt4ZYEq6RbYUEer655yIlrfEh8MemsaZoZPM2kdziex4jx_ETennHmVDMTYIG-Ofl-aNL2UgDTi9NvkZF-ldxGnyTBxrLExwcMrvs3EvYGXM1gzHCRkQ0mbxhFSCEW9qKCrsEj')">
+<span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#0a0e18]/90 border border-cyan-500/30 backdrop-blur-md text-cyan-300 font-label-sm text-label-sm uppercase shadow-sm">
+              Update Game
+            </span>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-slate-400">21 Oktober 2025</span>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors leading-snug">
+                Guide Meta Patch Terbaru MLBB: Hero Terbaik Push Rank Mythic Immortal
+              </h3>
+<p class="font-body-sm text-body-sm text-slate-400 line-clamp-3">
+                Analisis tier list hero tier S yang wajib kamu kuasai dan strategi item counter meta assassin untuk solo maupun mabar 5-man.
+              </p>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-cyan-200 transition-colors" href="#">
+              Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+<!-- Promo Card 3 -->
+<article class="flex flex-col rounded-2xl bg-[#121929] border border-cyan-500/20 hover:border-cyan-400/50 shadow-sm overflow-hidden hover:shadow-[0_0_24px_rgba(0,210,255,0.15)] transition-all group">
+<div class="h-48 w-full bg-cover bg-center relative" data-alt="Indonesian esports tournament arena stage with dynamic cyan illumination, trophy cup in foreground, energized cheering audience in modern gaming venue" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAtGykqBRfMp81AxqpFoNZiqX1yoPjtbNYWNAES61FtyIeCf2Wj5-KgazXrDgVD934i1k9GF8ex9Ri3_D673_i9W_Z9--EUQC90JgL3ZaiYMeAQeYX72-80uQFN5C2g_ILicnMjtTcjveftBBh-PjvjFx4eIcEgtb99_QZJ_Fcqwxyb7OnrTOZPEJJ_OsASp9vf_Ph3TSjxR4Z5NXBixmDRYTgYeUXhQpKSzVUUVFU1')">
+<span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#0a0e18]/90 border border-cyan-500/30 backdrop-blur-md text-cyan-300 font-label-sm text-label-sm uppercase shadow-sm">
+              Komunitas
+            </span>
+</div>
+<div class="p-6 flex flex-col flex-1 justify-between gap-4">
+<div class="flex flex-col gap-2">
+<span class="font-label-sm text-label-sm text-slate-400">18 Oktober 2025</span>
+<h3 class="font-headline-sm text-headline-sm text-white group-hover:text-primary transition-colors leading-snug">
+                Verzy Championship Season 4 Resmi Dibuka: Total Prize Pool Rp 50 Juta!
+              </h3>
+<p class="font-body-sm text-body-sm text-slate-400 line-clamp-3">
+                Daftarkan tim esports kampus dan komunitasmu sekarang, gratis biaya pendaftaran slot terbatas dengan total hadiah puluhan juta rupiah.
+              </p>
+</div>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary hover:text-cyan-200 transition-colors" href="#">
+              Baca Selengkapnya <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</article>
+</div>
+<!-- Centered CTA -->
+<div class="flex justify-center pt-4">
+<a class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#121929] border border-cyan-500/30 text-cyan-300 font-headline-sm text-headline-sm hover:bg-[#172036] hover:border-cyan-400/60 hover:text-white transition-all shadow-[0_0_12px_rgba(0,210,255,0.1)]" href="#">
+<span class="">Lihat Semua Berita &amp; Promo</span>
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</a>
+</div>
+</div>
+</section>
+<!-- SECTION 5: CONTACT & MAPS -->
+<section class="w-full bg-[#0a0e18] py-16 lg:py-24" id="kontak">
+<div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-12">
+<div class="flex flex-col gap-2">
+<span class="px-3.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 font-label-sm text-label-sm uppercase tracking-wider self-start shadow-[0_0_10px_rgba(0,210,255,0.15)]">
+          PUSAT BANTUAN
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-white">
+          Punya Pertanyaan atau Kendala Transaksi?
+        </h2>
+<p class="font-body-md text-body-md text-slate-300">
+          Hubungi tim spesialis kami kapan saja. Kami siap membantu menyelesaikan order top-up Anda dalam hitungan menit.
+        </p>
+</div>
+<!-- Two-Column Balanced Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Left Column: Info & Form -->
+<div class="lg:col-span-6 flex flex-col gap-8">
+<!-- Contact Detail Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-[#121929] border border-cyan-500/20 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-primary uppercase drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">WhatsApp CS 24 Jam</span>
+<span class="font-headline-sm text-headline-sm text-white">+62 812-9988-7722</span>
+<span class="font-body-sm text-body-sm text-slate-400">Respon rata-rata &lt; 2 menit</span>
+</div>
+<div class="p-4 rounded-xl bg-[#121929] border border-cyan-500/20 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-primary uppercase drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Email Resmi</span>
+<span class="font-headline-sm text-headline-sm text-white">support@verzystore.id</span>
+<span class="font-body-sm text-body-sm text-slate-400">Solusi tiket kendala formal</span>
+</div>
+<div class="sm:col-span-2 p-4 rounded-xl bg-[#121929] border border-cyan-500/20 flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-primary uppercase drop-shadow-[0_0_6px_rgba(0,210,255,0.3)]">Alamat Kantor Pusat</span>
+<p class="font-body-md text-body-md text-slate-200">
+                Cyber 2 Tower Lt. 18, Jl. H. R. Rasuna Said, Kuningan Barat, Jakarta Selatan 12950
+              </p>
+<span class="font-body-sm text-body-sm text-slate-400">Jam CS Aktif: 08.00 - 23.00 WIB (Sistem 24 Jam Otomatis)</span>
+</div>
+</div>
+<!-- Message Form -->
+<form class="p-6 rounded-2xl bg-[#121929] border border-cyan-500/25 shadow-sm flex flex-col gap-4" id="contact-form">
+<h3 class="font-headline-sm text-headline-sm text-white">Kirim Pesan Langsung ke Helpdesk</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-300" for="name">Nama Lengkap</label>
+<input class="w-full px-4 py-3 rounded-xl bg-[#0a0e18] border border-cyan-500/20 text-white font-body-md text-body-md placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" id="name" name="name" placeholder="Contoh: Farhan Pratama" required="" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-300" for="contact">Email / Nomor WhatsApp</label>
+<input class="w-full px-4 py-3 rounded-xl bg-[#0a0e18] border border-cyan-500/20 text-white font-body-md text-body-md placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" id="contact" name="contact" placeholder="0812xxxx atau email@domain.com" required="" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-300" for="category">Kategori Kendala</label>
+<select class="w-full px-4 py-3 rounded-xl bg-[#0a0e18] border border-cyan-500/20 text-white font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" id="category" name="category">
+<option class="bg-[#0a0e18] text-white" value="topup">Top Up Belum Masuk</option>
+<option class="bg-[#0a0e18] text-white" value="partnership">Kerjasama Bisnis &amp; Reseller</option>
+<option class="bg-[#0a0e18] text-white" value="general">Pertanyaan Umum &amp; Event Promo</option>
+</select>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-300" for="message">Detail Pesan / Nomor Invoice</label>
+<textarea class="w-full px-4 py-3 rounded-xl bg-[#0a0e18] border border-cyan-500/20 text-white font-body-md text-body-md placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none" id="message" name="message" placeholder="Tuliskan nomor invoice ID transaksi dan ceritakan kendala Anda..." required="" rows="4"></textarea>
+</div>
+<button class="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#00d2ff] to-[#086288] text-slate-950 font-bold font-headline-sm text-headline-sm hover:brightness-110 shadow-[0_0_20px_rgba(0,210,255,0.35)] transition-all flex items-center justify-center gap-2 mt-2" type="submit">
+<span class="material-symbols-outlined text-[20px]">send</span>
+<span class="">Kirim Pesan Sekarang</span>
+</button>
+<div class="hidden text-center py-2 rounded-lg bg-cyan-950/80 border border-cyan-400/40 text-cyan-300 font-body-sm text-body-sm shadow-[0_0_12px_rgba(0,210,255,0.2)]" id="form-success">
+              ✓ Pesan Anda berhasil terkirim! Tim kami akan merespons dalam hitungan menit.
+            </div>
+</form>
+</div>
+<!-- Right Column: Interactive Map Component -->
+<div class="lg:col-span-6 flex flex-col gap-4">
+<div class="w-full h-full min-h-[460px] rounded-2xl bg-[#121929] border border-cyan-500/25 overflow-hidden shadow-sm relative flex flex-col justify-between p-6">
+<!-- Map subtle dark grid styling -->
+<div class="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:20px_20px] opacity-40"></div>
+<!-- Map dark cyber overlay for contrast -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#0a0e18]/95 via-[#0f1422]/60 to-[#0a0e18]/80 backdrop-blur-[1px] pointer-events-none"></div>
+<!-- Top Map Badge -->
+<div class="relative z-10 flex items-center justify-between">
+<div class="px-4 py-2 rounded-xl bg-[#0a0e18]/90 border border-cyan-500/30 backdrop-blur-md shadow-md flex items-center gap-2 text-white">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-ping"></span>
+<span class="font-headline-sm text-headline-sm">Verzy Store HQ</span>
+</div>
+<div class="flex items-center gap-1 bg-[#0a0e18]/90 border border-cyan-500/30 backdrop-blur-md rounded-xl p-1 shadow-sm">
+<button aria-label="Zoom in" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+</button>
+<button aria-label="Zoom out" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-300 hover:text-white hover:bg-slate-800 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">remove</span>
+</button>
+</div>
+</div>
+<!-- Center Pin Graphic -->
+<div class="relative z-10 self-center flex flex-col items-center pointer-events-none my-auto">
+<div class="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#00d2ff] to-[#086288] text-slate-950 font-bold font-label-md text-label-md shadow-[0_0_18px_rgba(0,210,255,0.5)] flex items-center gap-1.5 mb-1">
+<span class="material-symbols-outlined text-[16px]">apartment</span>
+                Cyber 2 Tower Lt. 18
+              </div>
+<span class="material-symbols-outlined text-primary text-[46px] drop-shadow-[0_0_12px_rgba(0,210,255,0.7)]" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<!-- Bottom Map Card with External Directions Action -->
+<div class="relative z-10 p-4 rounded-xl bg-[#0a0e18]/95 border border-cyan-500/30 backdrop-blur-md shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-white">Kuningan Barat, Jakarta</span>
+<span class="font-body-sm text-body-sm text-slate-400">Akses mudah via LRT Rasuna Said / TransJakarta</span>
+</div>
+<a class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#00d2ff] to-[#086288] text-slate-950 font-bold font-headline-sm text-headline-sm hover:brightness-110 transition-all shrink-0 shadow-[0_0_16px_rgba(0,210,255,0.3)]" href="https://maps.google.com/?q=Cyber+2+Tower+Jakarta" rel="noopener noreferrer" target="_blank">
+<span class="">Buka di Google Maps</span>
+<span class="material-symbols-outlined text-[18px]">directions</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Script for Micro-Interactions -->
+<script>
+    (function() {
+      const contactForm = document.getElementById('contact-form');
+      const formSuccess = document.getElementById('form-success');
+      if (contactForm && formSuccess) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          formSuccess.classList.remove('hidden');
+          contactForm.reset();
+          setTimeout(function() {
+            formSuccess.classList.add('hidden');
+          }, 6000);
+        });
+      }
+    })();
+  </script>
+</div></main><footer class="w-full bg-[#0a0e18] border-t border-cyan-500/20 shadow-[0_-4px_24px_rgba(0,0,0,0.5)]"><div class="max-w-7xl mx-auto px-6 lg:px-12 pt-space-xl pb-space-lg"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl mb-space-xl"><div class="lg:col-span-2 flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><span class="font-headline-lg text-headline-lg tracking-tight text-white">Verzy<span class="text-primary drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]">Store</span></span><span class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_#00d2ff]"></span></div><p class="font-body-md text-body-md text-slate-400 max-w-sm">Platform top-up game dan voucher digital tercepat, termurah, dan terpercaya di Indonesia. Transaksi otomatis 24 jam non-stop.</p><div class="flex items-center gap-space-sm pt-space-xs"><a aria-label="Instagram" class="w-9 h-9 rounded-xl bg-[#121929] border border-cyan-500/20 flex items-center justify-center text-cyan-300 hover:text-white hover:border-cyan-400/60 hover:bg-[#172036] transition-all" href="#"><span class="material-symbols-outlined text-[18px]">photo_camera</span></a><a aria-label="TikTok" class="w-9 h-9 rounded-xl bg-[#121929] border border-cyan-500/20 flex items-center justify-center text-cyan-300 hover:text-white hover:border-cyan-400/60 hover:bg-[#172036] transition-all" href="#"><span class="material-symbols-outlined text-[18px]">play_circle</span></a><a aria-label="Discord" class="w-9 h-9 rounded-xl bg-[#121929] border border-cyan-500/20 flex items-center justify-center text-cyan-300 hover:text-white hover:border-cyan-400/60 hover:bg-[#172036] transition-all" href="#"><span class="material-symbols-outlined text-[18px]">forum</span></a><a aria-label="WhatsApp" class="w-9 h-9 rounded-xl bg-[#121929] border border-cyan-500/20 flex items-center justify-center text-cyan-300 hover:text-white hover:border-cyan-400/60 hover:bg-[#172036] transition-all" href="#"><span class="material-symbols-outlined text-[18px]">chat</span></a></div></div><div><h4 class="font-headline-sm text-headline-sm text-white mb-space-md">Menu Cepat</h4><ul class="flex flex-col gap-space-sm"><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="beranda" href="#">Beranda</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="tentang-kami" href="#">Tentang Kami</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="berita-promo" href="#">Promo &amp; Diskon</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="status-pesanan" href="#">Lacak Pesanan</a></li></ul></div><div><h4 class="font-headline-sm text-headline-sm text-white mb-space-md">Kategori Game</h4><ul class="flex flex-col gap-space-sm"><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="layanan-game" href="#">Mobile Legends</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="layanan-game" href="#">Free Fire</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="layanan-game" href="#">PUBG Mobile</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="layanan-game" href="#">Genshin Impact</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="layanan-game" href="#">Steam Wallet</a></li></ul></div><div><h4 class="font-headline-sm text-headline-sm text-white mb-space-md">Bantuan</h4><ul class="flex flex-col gap-space-sm"><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="kontak" href="#">Hubungi CS</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="syarat-ketentuan" href="#">Syarat &amp; Ketentuan</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="kebijakan-privasi" href="#">Kebijakan Privasi</a></li><li class="font-body-md text-body-md"><a class="text-slate-400 hover:text-primary transition-colors" data-path="faq" href="#">FAQ</a></li></ul></div></div><div class="pt-space-lg border-t border-slate-800/80 flex flex-col md:flex-row items-center justify-between gap-space-md"><p class="font-body-sm text-body-sm text-slate-400">© 2025 PT Verzy Digital Media. All rights reserved.</p><div class="flex items-center gap-space-md"><span class="font-label-sm text-label-sm uppercase text-slate-400">Instant Delivery</span><span class="inline-block w-1 h-1 rounded-full bg-cyan-500/40"></span><span class="font-label-sm text-label-sm uppercase text-slate-400">100% Legal &amp; Safe</span><span class="inline-block w-1 h-1 rounded-full bg-cyan-500/40"></span><span class="font-label-sm text-label-sm uppercase text-slate-400">Layanan 24/7</span></div></div></div></footer>
+</body></html>
