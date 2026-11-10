@@ -22,7 +22,7 @@
       "id": "user_admin_default",
       "name": "Administrator Verzy",
       "email": "admin@gmail.com",
-      "password_hash": "$2b$10$RNMsZ27RoPtysNnABuzLnen0a0OApvrdjXgflL.rri/0dzOe48hx6",
+      "password_hash": "$2b$10$L8C7hIoYe/8f0hWAUlkG2OnEUzzgnteuNy5j.iLF0GQCs2Wt7iGKS",
       "role_id": "admin",
       "status": "active",
       "created_at": "2026-11-10T01:25:03.053Z",

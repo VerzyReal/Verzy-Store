@@ -174,8 +174,7 @@ export default function LoginPage() {
       <Suspense
         fallback={
           <div className="p-12 text-center text-sm text-on-surface-variant dark:text-slate-400">
-            <Loader2 className="w-6 h-6 animate-spin mx-auto text-primary-container dark:text-cyan-400 mb-2" />
-            <span>Memuat halaman login...</span>
+            <Loader2 className="w-6 h-6 animate-spin mx-auto text-primary-container dark:text-cyan-400" />
           </div>
         }
       >
