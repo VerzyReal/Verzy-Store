@@ -16,7 +16,7 @@ Posisi saat ini: **Step 2 - User Management, Dashboard, & Google Spreadsheet Dat
   - [x] Dikonfirmasi pengguna
 - [x] STEP 2 - User management & dashboard
   - [x] Apps Script (`code.gs`, `setup.gs`) + inisiasi tabel idempoten (`Roles`, `Users`, `News`)
-  - [x] Login & register (Validasi form, cookie httpOnly JWT dengan `jose`, proteksi password dengan `bcryptjs`)
+  - [x] Login & register (Validasi form, cookie httpOnly JWT dengan `jose`, proteksi password dengan `bcryptjs`, halaman login bersih tanpa pembocoran kredensial)
   - [x] Role admin & user (Role bawaan berstatus `is_system`, proteksi route dashboard di server via `middleware.ts`)
   - [x] Akun admin default (`admin@gmail.com` / `123456`) tersimpan dalam bentuk hash bcrypt + form ganti password
   - [x] Dashboard: manajemen user (cari, ubah role, aktif/nonaktif, proteksi hapus admin sendiri & admin terakhir)
