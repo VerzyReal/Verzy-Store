@@ -1,12 +1,39 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { siteConfig, NewsArticle } from "@/config/site";
+import { siteConfig } from "@/config/site";
 import { ArrowRight, Calendar, X } from "lucide-react";
 
 export default function NewsSection() {
-  const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
+  const [articles, setArticles] = useState<any[]>(siteConfig.articles);
+  const [selectedArticle, setSelectedArticle] = useState<any | null>(null);
+
+  useEffect(() => {
+    fetch("/api/admin/news?status=published")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.news && data.news.length > 0) {
+          // Format artikel dari database agar serasi
+          const mapped = data.news.map((item: any) => ({
+            id: item.id,
+            title: item.title,
+            slug: item.slug,
+            tag: item.tag || "Berita & Promo",
+            date: new Date(item.created_at || Date.now()).toLocaleDateString("id-ID", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            }),
+            excerpt: item.excerpt,
+            content: item.content,
+            thumbnail: item.thumbnail_path || "/images/hero-illustration.png",
+          }));
+          setArticles(mapped);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <section id="promo" className="w-full bg-surface-low dark:bg-[#0f1422] dark:border-y dark:border-cyan-500/10 py-16 lg:py-24 transition-colors duration-300">
@@ -24,9 +51,9 @@ export default function NewsSection() {
           </p>
         </div>
 
-        {/* 3 Rich Article Cards Grid */}
+        {/* Dynamic Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {siteConfig.articles.map((article) => (
+          {articles.map((article) => (
             <article
               key={article.id}
               className="flex flex-col rounded-3xl bg-white dark:bg-[#121929] shadow-sm border border-surface-container-high/60 dark:border-cyan-500/20 overflow-hidden hover:shadow-xl dark:hover:shadow-[0_0_20px_rgba(0,210,255,0.15)] hover:border-secondary-container dark:hover:border-cyan-400/50 transition-all group"
@@ -34,14 +61,14 @@ export default function NewsSection() {
               {/* Thumbnail Container */}
               <div className="h-48 w-full relative overflow-hidden bg-surface-container dark:bg-slate-900">
                 <Image
-                  src={article.thumbnail}
+                  src={article.thumbnail || "/images/hero-illustration.png"}
                   alt={article.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 768px) 100vw, 400px"
                 />
                 <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 dark:bg-[#0a0e18]/90 dark:border dark:border-cyan-500/30 backdrop-blur-md text-primary dark:text-cyan-300 font-sans text-xs font-bold uppercase shadow-sm">
-                  {article.tag}
+                  {article.tag || "Promo"}
                 </span>
               </div>
 
@@ -88,7 +115,7 @@ export default function NewsSection() {
 
             <div className="flex items-center gap-3">
               <span className="px-3 py-1 rounded-full bg-secondary-container dark:bg-cyan-950/80 dark:border dark:border-cyan-500/30 text-on-secondary-container dark:text-cyan-300 font-sans text-xs font-bold uppercase">
-                {selectedArticle.tag}
+                {selectedArticle.tag || "Artikel"}
               </span>
               <span className="text-xs text-on-surface-variant dark:text-slate-400">{selectedArticle.date}</span>
             </div>
@@ -99,7 +126,7 @@ export default function NewsSection() {
 
             <div className="relative h-60 w-full rounded-2xl overflow-hidden bg-surface-container dark:bg-slate-800">
               <Image
-                src={selectedArticle.thumbnail}
+                src={selectedArticle.thumbnail || "/images/hero-illustration.png"}
                 alt={selectedArticle.title}
                 fill
                 className="object-cover"
@@ -107,8 +134,12 @@ export default function NewsSection() {
             </div>
 
             <div className="font-sans text-base text-on-surface dark:text-slate-200 leading-relaxed flex flex-col gap-4">
-              <p className="font-semibold text-primary-container dark:text-cyan-400">{selectedArticle.excerpt}</p>
-              <p>{selectedArticle.content}</p>
+              {selectedArticle.excerpt && (
+                <p className="font-semibold text-primary-container dark:text-cyan-400">
+                  {selectedArticle.excerpt}
+                </p>
+              )}
+              <p className="whitespace-pre-line">{selectedArticle.content}</p>
             </div>
 
             <div className="pt-4 border-t border-surface-container dark:border-cyan-500/20 flex justify-end">
