@@ -48,7 +48,8 @@ export async function saveFile(
 
     // 3. Generate nama file unik & aman
     const uniquePrefix = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-    const cleanName = path.basename(originalFilename, ext).replace(/[^a-zA-Z0-9_-]/g, "");
+    const rawClean = path.basename(originalFilename, ext).replace(/[^a-zA-Z0-9_-]/g, "");
+    const cleanName = rawClean || "upload";
     const safeFilename = `${uniquePrefix}_${cleanName}${ext}`;
     const destinationPath = path.join(UPLOADS_DIR, safeFilename);
 

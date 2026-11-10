@@ -4,15 +4,24 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
-import { Menu, X, User, ArrowRight } from "lucide-react";
+import { Menu, X, User, ArrowRight, LayoutDashboard, LogOut } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("beranda");
+  const [user, setUser] = useState<{ id: string; name: string; email: string; role: string } | null>(null);
 
   useEffect(() => {
+    // Cek status sesi login
+    fetch("/api/auth/me")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user) setUser(data.user);
+      })
+      .catch(() => {});
+
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
@@ -35,6 +44,14 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      setUser(null);
+      window.location.reload();
+    } catch {}
+  };
 
   return (
     <header
@@ -95,13 +112,39 @@ export default function Navbar() {
         <div className="hidden sm:flex items-center gap-3">
           <ThemeToggle />
 
-          <Link
-            href="/login"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-container text-white dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] dark:text-slate-950 dark:font-bold font-headline text-sm font-semibold shadow-glow dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:bg-primary dark:hover:shadow-[0_0_28px_rgba(0,210,255,0.65)] hover:shadow-cyan transition-all"
-          >
-            <User className="w-4 h-4" />
-            <span>Masuk / Login</span>
-          </Link>
+          {user ? (
+            <div className="flex items-center gap-2">
+              {user.role === "admin" ? (
+                <Link
+                  href="/dashboard"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-container dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline text-sm font-semibold dark:font-bold shadow-glow dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:bg-primary transition-all"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  <span>Dashboard Admin</span>
+                </Link>
+              ) : (
+                <div className="px-3.5 py-1.5 rounded-xl bg-surface-low dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/30 text-xs font-semibold text-primary dark:text-cyan-300 flex items-center gap-1.5">
+                  <User className="w-3.5 h-3.5" />
+                  <span>{user.name}</span>
+                </div>
+              )}
+              <button
+                onClick={handleLogout}
+                title="Keluar"
+                className="p-2 rounded-xl text-on-surface-variant dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
+              >
+                <LogOut className="w-4 h-4" />
+              </button>
+            </div>
+          ) : (
+            <Link
+              href="/login"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-container text-white dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline text-sm font-semibold shadow-glow dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:bg-primary dark:hover:shadow-[0_0_28px_rgba(0,210,255,0.65)] hover:shadow-cyan transition-all"
+            >
+              <User className="w-4 h-4" />
+              <span>Masuk / Login</span>
+            </Link>
+          )}
         </div>
 
         {/* Mobile Controls (Theme Toggle + Hamburger) */}
@@ -141,14 +184,36 @@ export default function Navbar() {
               );
             })}
             <div className="pt-4 border-t border-surface-container-high dark:border-cyan-500/20 mt-2 flex flex-col gap-3">
-              <Link
-                href="/login"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary-container dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline font-semibold shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.4)]"
-              >
-                <User className="w-5 h-5" />
-                <span>Masuk ke Dashboard / Akun</span>
-              </Link>
+              {user ? (
+                <>
+                  {user.role === "admin" && (
+                    <Link
+                      href="/dashboard"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary-container dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline font-semibold shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.4)]"
+                    >
+                      <LayoutDashboard className="w-5 h-5" />
+                      <span>Buka Dashboard Admin</span>
+                    </Link>
+                  )}
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 font-headline font-semibold"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Keluar ({user.name})</span>
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary-container dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline font-semibold shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.4)]"
+                >
+                  <User className="w-5 h-5" />
+                  <span>Masuk ke Akun</span>
+                </Link>
+              )}
             </div>
           </nav>
         </div>

@@ -49,9 +49,8 @@ export default function RegisterPage() {
 
       setSuccess(true);
       setTimeout(() => {
-        router.push("/");
-        router.refresh();
-      }, 1500);
+        window.location.href = "/";
+      }, 1200);
     } catch (err: any) {
       setErrorMessage(err.message);
     } finally {

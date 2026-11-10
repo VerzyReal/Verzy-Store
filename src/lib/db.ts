@@ -294,6 +294,10 @@ export const db = {
     if (remote) return remote;
 
     const local = readLocalDb();
+    if (local.roles.some((r) => r.name.toLowerCase() === data.name.toLowerCase())) {
+      return { success: false, error: "Role dengan nama tersebut sudah terdaftar" };
+    }
+
     const id = "role_" + Math.random().toString(36).substring(2, 9);
     const newRole: DbRole = {
       id,
@@ -341,6 +345,14 @@ export const db = {
     if (!role) return { success: false, error: "Role tidak ditemukan" };
     if (role.is_system) {
       return { success: false, error: "Role sistem tidak dapat dihapus" };
+    }
+
+    const usersWithRole = local.users.filter((u) => u.role_id === role.name);
+    if (usersWithRole.length > 0) {
+      return {
+        success: false,
+        error: `Role "${role.name}" tidak dapat dihapus karena masih digunakan oleh ${usersWithRole.length} pengguna`,
+      };
     }
 
     local.roles = local.roles.filter((r) => r.id !== id);

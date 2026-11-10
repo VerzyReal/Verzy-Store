@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth";
+import { getCurrentUser, hashPassword } from "@/lib/auth";
 import { db } from "@/lib/db";
 
 export async function GET() {
@@ -23,12 +23,28 @@ export async function PATCH(request: Request) {
     return NextResponse.json({ error: "User ID required" }, { status: 400 });
   }
 
-  // Admin tidak bisa menonaktifkan dirinya sendiri
+  // Admin tidak bisa menonaktifkan akun sendiri
   if (data.id === currentUser.id && data.status === "inactive") {
     return NextResponse.json(
       { error: "Anda tidak dapat menonaktifkan akun sendiri" },
       { status: 400 }
     );
+  }
+
+  // Admin tidak bisa mencabut hak admin akun sendiri
+  if (data.id === currentUser.id && data.role_id && data.role_id !== "admin") {
+    return NextResponse.json(
+      { error: "Anda tidak dapat mencabut hak administrator akun sendiri" },
+      { status: 400 }
+    );
+  }
+
+  // Hash password jika sedang diubah
+  if (data.password) {
+    data.password_hash = await hashPassword(data.password);
+    delete data.password;
+  } else if (data.password_hash && !data.password_hash.startsWith("$2")) {
+    data.password_hash = await hashPassword(data.password_hash);
   }
 
   const res = await db.updateUser(data);

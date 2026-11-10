@@ -64,3 +64,4 @@ console.log("✓ Artikel Berita tersedia:", data.news.length, "artikel.");
 data.news.forEach(n => console.log("  - [" + n.status + "] " + n.title));
 
 console.log("\n=== SELURUH PENGUJIAN STEP 2 BERHASIL 100%! ===");
+

@@ -75,7 +75,7 @@ export default function DashboardOverviewPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: meData.user.id,
-          password_hash: newPassword, // API akan menghash atau update di DB
+          password: newPassword,
         }),
       });
 
