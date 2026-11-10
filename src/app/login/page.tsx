@@ -134,7 +134,7 @@ function LoginForm() {
         </button>
       </form>
 
-      <div className="mt-6 pt-6 border-t border-surface-container-high dark:border-cyan-500/20 flex flex-col gap-3 text-center">
+      <div className="mt-6 pt-6 border-t border-surface-container-high dark:border-cyan-500/20 text-center">
         <p className="font-sans text-xs text-on-surface-variant dark:text-slate-400">
           Belum punya akun?{" "}
           <Link
@@ -145,15 +145,6 @@ function LoginForm() {
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </p>
-
-        <div className="p-3 rounded-xl bg-surface-low dark:bg-slate-900/80 border border-surface-container-high dark:border-cyan-500/20 text-left text-[11px] text-on-surface-variant dark:text-slate-400">
-          <span className="font-bold text-primary dark:text-cyan-400 block mb-1">
-            Akun Admin Bawaan (Step 2):
-          </span>
-          Email: <code className="text-on-surface dark:text-white font-mono">admin@gmail.com</code>
-          <br />
-          Kata Sandi: <code className="text-on-surface dark:text-white font-mono">123456</code>
-        </div>
       </div>
     </div>
   );
