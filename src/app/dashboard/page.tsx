@@ -6,6 +6,7 @@ import {
   Users,
   Shield,
   Newspaper,
+  ShoppingBag,
   ShieldAlert,
   ArrowRight,
   Database,
@@ -19,6 +20,8 @@ export default function DashboardOverviewPage() {
     usersCount: 0,
     rolesCount: 0,
     newsCount: 0,
+    ordersCount: 0,
+    pendingOrdersCount: 0,
   });
   const [loading, setLoading] = useState(true);
 
@@ -30,20 +33,27 @@ export default function DashboardOverviewPage() {
   useEffect(() => {
     async function loadStats() {
       try {
-        const [usersRes, rolesRes, newsRes] = await Promise.all([
+        const [usersRes, rolesRes, newsRes, ordersRes] = await Promise.all([
           fetch("/api/admin/users"),
           fetch("/api/admin/roles"),
           fetch("/api/admin/news"),
+          fetch("/api/admin/orders"),
         ]);
 
         const usersData = await usersRes.json();
         const rolesData = await rolesRes.json();
         const newsData = await newsRes.json();
+        const ordersData = await ordersRes.json();
+
+        const ordersList = ordersData.orders || [];
+        const pendingCount = ordersList.filter((o: any) => o.status === "menunggu_konfirmasi").length;
 
         setStats({
           usersCount: usersData.users ? usersData.users.length : 0,
           rolesCount: rolesData.roles ? rolesData.roles.length : 0,
           newsCount: newsData.news ? newsData.news.length : 0,
+          ordersCount: ordersList.length,
+          pendingOrdersCount: pendingCount,
         });
       } catch (err) {
         console.error("Gagal memuat statistik:", err);
@@ -75,7 +85,7 @@ export default function DashboardOverviewPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id: meData.user.id,
-          password: newPassword,
+          password_hash: newPassword, // API akan menghash atau update di DB
         }),
       });
 
@@ -121,8 +131,32 @@ export default function DashboardOverviewPage() {
         </div>
       </div>
 
-      {/* 3 Metric Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+      {/* 4 Metric Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <Link
+          href="/dashboard/orders"
+          className="p-6 rounded-3xl bg-white dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/20 shadow-sm flex items-center justify-between hover:border-primary-container dark:hover:border-cyan-400/50 transition-all group"
+        >
+          <div className="flex flex-col">
+            <span className="font-sans text-xs text-on-surface-variant dark:text-slate-400 font-semibold uppercase tracking-wider">
+              Pesanan Masuk
+            </span>
+            <div className="flex items-center gap-2 mt-1">
+              <span className="font-headline text-3xl font-bold text-primary dark:text-cyan-400">
+                {loading ? "..." : stats.ordersCount}
+              </span>
+              {stats.pendingOrdersCount > 0 && (
+                <span className="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 font-sans text-[10px] font-bold">
+                  {stats.pendingOrdersCount} Baru
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="w-12 h-12 rounded-2xl bg-surface-container dark:bg-cyan-950/80 dark:border dark:border-cyan-500/30 flex items-center justify-center text-primary dark:text-cyan-400 group-hover:scale-105 transition-transform">
+            <ShoppingBag className="w-6 h-6" />
+          </div>
+        </Link>
+
         <div className="p-6 rounded-3xl bg-white dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/20 shadow-sm flex items-center justify-between">
           <div className="flex flex-col">
             <span className="font-sans text-xs text-on-surface-variant dark:text-slate-400 font-semibold uppercase tracking-wider">
@@ -140,7 +174,7 @@ export default function DashboardOverviewPage() {
         <div className="p-6 rounded-3xl bg-white dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/20 shadow-sm flex items-center justify-between">
           <div className="flex flex-col">
             <span className="font-sans text-xs text-on-surface-variant dark:text-slate-400 font-semibold uppercase tracking-wider">
-              Total Hak Akses / Role
+              Hak Akses / Role
             </span>
             <span className="font-headline text-3xl font-bold text-primary dark:text-cyan-400 mt-1">
               {loading ? "..." : stats.rolesCount}
@@ -154,7 +188,7 @@ export default function DashboardOverviewPage() {
         <div className="p-6 rounded-3xl bg-white dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/20 shadow-sm flex items-center justify-between">
           <div className="flex flex-col">
             <span className="font-sans text-xs text-on-surface-variant dark:text-slate-400 font-semibold uppercase tracking-wider">
-              Artikel Berita &amp; Promo
+              Berita &amp; Promo
             </span>
             <span className="font-headline text-3xl font-bold text-primary dark:text-cyan-400 mt-1">
               {loading ? "..." : stats.newsCount}
@@ -175,6 +209,29 @@ export default function DashboardOverviewPage() {
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Link
+              href="/dashboard/orders"
+              className="p-5 rounded-2xl bg-white dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/20 hover:border-secondary-container dark:hover:border-cyan-400/50 shadow-sm transition-all flex flex-col justify-between gap-4 group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-surface-low dark:bg-cyan-950/80 flex items-center justify-center text-primary dark:text-cyan-400">
+                  <ShoppingBag className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="font-headline text-sm font-bold text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">
+                    Verifikasi Pesanan Masuk
+                  </h3>
+                  <p className="font-sans text-xs text-on-surface-variant dark:text-slate-400">
+                    Konfirmasi pembayaran QRIS tiket
+                  </p>
+                </div>
+              </div>
+              <span className="inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-cyan-400">
+                <span>Buka Pesanan</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </Link>
+
             <Link
               href="/dashboard/news"
               className="p-5 rounded-2xl bg-white dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/20 hover:border-secondary-container dark:hover:border-cyan-400/50 shadow-sm transition-all flex flex-col justify-between gap-4 group"

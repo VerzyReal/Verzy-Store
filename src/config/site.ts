@@ -10,6 +10,13 @@ export interface GameService {
   popular?: boolean;
 }
 
+export interface TopUpPackage {
+  id: string;
+  name: string;
+  price: number;
+  bonus?: string;
+}
+
 export interface NewsArticle {
   id: string;
   title: string;
@@ -186,5 +193,46 @@ export const siteConfig = {
       thumbnail: "/images/hero-illustration.png",
     },
   ] as NewsArticle[],
+  gamePackages: {
+    mlbb: [
+      { id: "mlbb_86", name: "86 Diamonds", price: 21000 },
+      { id: "mlbb_172", name: "172 Diamonds", price: 42000 },
+      { id: "mlbb_257", name: "257 Diamonds", price: 63000, bonus: "Best Seller" },
+      { id: "mlbb_706", name: "706 Diamonds", price: 170000, bonus: "+64 Bonus" },
+      { id: "mlbb_wdp", name: "Weekly Diamond Pass", price: 27500, bonus: "Hemat 60%" },
+      { id: "mlbb_twilight", name: "Twilight Pass", price: 145000 },
+    ],
+    ff: [
+      { id: "ff_70", name: "70 Diamonds", price: 10000 },
+      { id: "ff_140", name: "140 Diamonds", price: 20000 },
+      { id: "ff_355", name: "355 Diamonds", price: 50000, bonus: "Populer" },
+      { id: "ff_720", name: "720 Diamonds", price: 100000 },
+      { id: "ff_membership", name: "Membership Mingguan", price: 30000 },
+    ],
+    pubg: [
+      { id: "pubg_60", name: "60 UC", price: 15000 },
+      { id: "pubg_325", name: "325 UC", price: 75000, bonus: "Diskon 5%" },
+      { id: "pubg_660", name: "660 UC", price: 150000 },
+      { id: "pubg_1800", name: "1800 UC", price: 380000 },
+    ],
+    genshin: [
+      { id: "genshin_60", name: "60 Genesis Crystals", price: 16500 },
+      { id: "genshin_300", name: "300+30 Genesis Crystals", price: 79000 },
+      { id: "genshin_welkin", name: "Blessing of the Welkin Moon", price: 79000, bonus: "Best Value" },
+      { id: "genshin_980", name: "980+110 Genesis Crystals", price: 245000 },
+    ],
+    valorant: [
+      { id: "val_475", name: "475 VP Riot Games", price: 50000 },
+      { id: "val_1000", name: "1000 VP Riot Games", price: 100000, bonus: "Populer" },
+      { id: "steam_60k", name: "Steam Wallet IDR 60.000", price: 65000 },
+      { id: "steam_120k", name: "Steam Wallet IDR 120.000", price: 128000 },
+    ],
+    voucher: [
+      { id: "gplay_50", name: "Google Play IDR 50.000", price: 52000 },
+      { id: "gplay_100", name: "Google Play IDR 100.000", price: 103000 },
+      { id: "discord_nitro", name: "Discord Nitro 1 Bulan", price: 140000 },
+      { id: "spotify_1m", name: "Spotify Premium 1 Bulan", price: 55000 },
+    ],
+  } as Record<string, TopUpPackage[]>,
 };
 

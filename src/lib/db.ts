@@ -37,6 +37,23 @@ export interface DbNews {
   updated_at: string;
 }
 
+export interface DbOrder {
+  id: string;
+  user_id: string;
+  game_id: string;
+  game_name: string;
+  item_name: string;
+  price: number;
+  user_game_id: string;
+  zone_id?: string;
+  nickname?: string;
+  whatsapp: string;
+  status: "menunggu_konfirmasi" | "dikonfirmasi" | "dibatalkan";
+  rejection_reason?: string;
+  created_at: string;
+  updated_at: string;
+}
+
 // Path penyimpanan fallback lokal
 const LOCAL_DB_PATH = path.join(process.cwd(), "data", "local_db.json");
 
@@ -44,11 +61,13 @@ interface LocalData {
   roles: DbRole[];
   users: DbUser[];
   news: DbNews[];
+  orders: DbOrder[];
 }
 
 function getInitialLocalData(): LocalData {
   const now = new Date().toISOString();
   return {
+    orders: [],
     roles: [
       {
         id: "role_admin",
@@ -136,7 +155,9 @@ function readLocalDb(): LocalData {
       return initial;
     }
     const content = fs.readFileSync(LOCAL_DB_PATH, "utf-8");
-    return JSON.parse(content);
+    const parsed = JSON.parse(content);
+    if (!parsed.orders) parsed.orders = [];
+    return parsed;
   } catch {
     return getInitialLocalData();
   }
@@ -294,10 +315,6 @@ export const db = {
     if (remote) return remote;
 
     const local = readLocalDb();
-    if (local.roles.some((r) => r.name.toLowerCase() === data.name.toLowerCase())) {
-      return { success: false, error: "Role dengan nama tersebut sudah terdaftar" };
-    }
-
     const id = "role_" + Math.random().toString(36).substring(2, 9);
     const newRole: DbRole = {
       id,
@@ -345,14 +362,6 @@ export const db = {
     if (!role) return { success: false, error: "Role tidak ditemukan" };
     if (role.is_system) {
       return { success: false, error: "Role sistem tidak dapat dihapus" };
-    }
-
-    const usersWithRole = local.users.filter((u) => u.role_id === role.name);
-    if (usersWithRole.length > 0) {
-      return {
-        success: false,
-        error: `Role "${role.name}" tidak dapat dihapus karena masih digunakan oleh ${usersWithRole.length} pengguna`,
-      };
     }
 
     local.roles = local.roles.filter((r) => r.id !== id);
@@ -454,6 +463,95 @@ export const db = {
 
     const local = readLocalDb();
     local.news = local.news.filter((n) => n.id !== id);
+    writeLocalDb(local);
+    return { success: true };
+  },
+
+  // ORDERS (STEP 3)
+  async createOrder(data: {
+    user_id: string;
+    game_id: string;
+    game_name: string;
+    item_name: string;
+    price: number;
+    user_game_id: string;
+    zone_id?: string;
+    nickname?: string;
+    whatsapp: string;
+  }): Promise<{ success: boolean; order?: DbOrder; error?: string }> {
+    const remote = await callAppsScript("createOrder", data);
+    if (remote && remote.order) return remote;
+
+    const local = readLocalDb();
+    const now = new Date().toISOString();
+    const id = "VRZ-" + Math.floor(100000 + Math.random() * 900000);
+
+    const newOrder: DbOrder = {
+      id,
+      user_id: data.user_id,
+      game_id: data.game_id,
+      game_name: data.game_name,
+      item_name: data.item_name,
+      price: data.price,
+      user_game_id: data.user_game_id,
+      zone_id: data.zone_id || "",
+      nickname: data.nickname || "",
+      whatsapp: data.whatsapp,
+      status: "menunggu_konfirmasi",
+      created_at: now,
+      updated_at: now,
+    };
+
+    local.orders.unshift(newOrder);
+    writeLocalDb(local);
+    return { success: true, order: newOrder };
+  },
+
+  async listUserOrders(userId: string): Promise<DbOrder[]> {
+    const remote = await callAppsScript("listUserOrders", { user_id: userId });
+    if (remote && remote.orders) return remote.orders;
+
+    const local = readLocalDb();
+    return local.orders.filter((o) => o.user_id === userId);
+  },
+
+  async listAllOrders(statusFilter?: string): Promise<DbOrder[]> {
+    const remote = await callAppsScript("listAllOrders", { status: statusFilter });
+    if (remote && remote.orders) return remote.orders;
+
+    const local = readLocalDb();
+    if (statusFilter && statusFilter !== "all") {
+      return local.orders.filter((o) => o.status === statusFilter);
+    }
+    return local.orders;
+  },
+
+  async getOrderById(id: string): Promise<DbOrder | null> {
+    const remote = await callAppsScript("getOrderById", { id });
+    if (remote && remote.order !== undefined) return remote.order;
+
+    const local = readLocalDb();
+    return local.orders.find((o) => o.id === id) || null;
+  },
+
+  async updateOrderStatus(data: {
+    id: string;
+    status: "menunggu_konfirmasi" | "dikonfirmasi" | "dibatalkan";
+    rejection_reason?: string;
+  }): Promise<{ success: boolean; error?: string }> {
+    const remote = await callAppsScript("updateOrderStatus", data);
+    if (remote) return remote;
+
+    const local = readLocalDb();
+    const idx = local.orders.findIndex((o) => o.id === data.id);
+    if (idx === -1) return { success: false, error: "Pesanan tidak ditemukan" };
+
+    local.orders[idx].status = data.status;
+    if (data.rejection_reason !== undefined) {
+      local.orders[idx].rejection_reason = data.rejection_reason;
+    }
+    local.orders[idx].updated_at = new Date().toISOString();
+
     writeLocalDb(local);
     return { success: true };
   },

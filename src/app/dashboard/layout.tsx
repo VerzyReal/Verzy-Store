@@ -11,6 +11,7 @@ import {
   Users,
   Shield,
   Newspaper,
+  ShoppingBag,
   LogOut,
   ExternalLink,
   Menu,
@@ -53,6 +54,11 @@ export default function DashboardLayout({
       href: "/dashboard",
       icon: <LayoutDashboard className="w-5 h-5" />,
       exact: true,
+    },
+    {
+      name: "Pesanan Masuk",
+      href: "/dashboard/orders",
+      icon: <ShoppingBag className="w-5 h-5" />,
     },
     {
       name: "Manajemen User",

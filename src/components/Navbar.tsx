@@ -3,39 +3,61 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { siteConfig } from "@/config/site";
-import { Menu, X, User, ArrowRight, LayoutDashboard, LogOut } from "lucide-react";
+import { Menu, X, User, ArrowRight, ShoppingBag, ShieldCheck, LogOut, ChevronDown } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("beranda");
-  const [user, setUser] = useState<{ id: string; name: string; email: string; role: string } | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
 
   useEffect(() => {
-    // Cek status sesi login
     fetch("/api/auth/me")
       .then((res) => res.json())
       .then((data) => {
-        if (data.user) setUser(data.user);
+        if (data.user) {
+          setCurrentUser(data.user);
+        }
       })
       .catch(() => {});
+  }, []);
 
+  const handleLogout = async () => {
+    try {
+      await fetch("/api/auth/logout", { method: "POST" });
+      setCurrentUser(null);
+      setUserDropdownOpen(false);
+      setMobileMenuOpen(false);
+      router.push("/");
+      router.refresh();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ["beranda", "tentang-kami", "layanan", "promo", "kontak"];
-      const scrollPos = window.scrollY + 100;
+      if (pathname === "/") {
+        const sections = ["beranda", "tentang-kami", "layanan", "promo", "kontak"];
+        const scrollPos = window.scrollY + 100;
 
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
-            break;
+        for (const section of sections) {
+          const el = document.getElementById(section);
+          if (el) {
+            const top = el.offsetTop;
+            const height = el.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+              setActiveSection(section);
+              break;
+            }
           }
         }
       }
@@ -43,14 +65,11 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [pathname]);
 
-  const handleLogout = async () => {
-    try {
-      await fetch("/api/auth/logout", { method: "POST" });
-      setUser(null);
-      window.location.reload();
-    } catch {}
+  const getNavHref = (href: string) => {
+    if (pathname === "/") return href;
+    return `/${href}`;
   };
 
   return (
@@ -63,7 +82,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
         {/* Brand Logo & Name */}
-        <Link href="#beranda" className="flex items-center gap-3 group">
+        <Link href={getNavHref("#beranda")} className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm ring-2 ring-primary/20 dark:ring-cyan-500/30 group-hover:ring-primary-container dark:group-hover:ring-cyan-400 transition-all">
             <Image
               src={siteConfig.logo}
@@ -91,11 +110,11 @@ export default function Navbar() {
         <nav className="hidden lg:flex items-center gap-1 bg-surface-container-low/70 dark:bg-[#121929]/70 p-1.5 rounded-2xl border border-surface-container-high/50 dark:border-cyan-500/20">
           {siteConfig.navigation.map((item) => {
             const sectionId = item.href.replace("#", "");
-            const isActive = activeSection === sectionId;
+            const isActive = pathname === "/" && activeSection === sectionId;
             return (
               <a
                 key={item.name}
-                href={item.href}
+                href={getNavHref(item.href)}
                 className={`px-4 py-2 rounded-xl text-sm font-semibold transition-all ${
                   isActive
                     ? "bg-primary-container text-white dark:bg-cyan-500/10 dark:text-cyan-300 dark:border dark:border-cyan-500/30 dark:shadow-[0_0_12px_rgba(0,210,255,0.15)] shadow-sm"
@@ -106,40 +125,92 @@ export default function Navbar() {
               </a>
             );
           })}
+
+          {currentUser && (
+            <Link
+              href="/orders"
+              className={`px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-1.5 transition-all ${
+                pathname === "/orders"
+                  ? "bg-primary-container text-white dark:bg-cyan-500/10 dark:text-cyan-300 dark:border dark:border-cyan-500/30 shadow-sm"
+                  : "text-on-surface-variant dark:text-slate-400 hover:text-on-surface dark:hover:text-white hover:bg-surface-container dark:hover:bg-slate-800/60"
+              }`}
+            >
+              <ShoppingBag className="w-4 h-4 text-primary-container dark:text-cyan-400" />
+              <span>Pesanan Saya</span>
+            </Link>
+          )}
         </nav>
 
         {/* Action Button, Theme Toggle & User */}
         <div className="hidden sm:flex items-center gap-3">
           <ThemeToggle />
 
-          {user ? (
-            <div className="flex items-center gap-2">
-              {user.role === "admin" ? (
-                <Link
-                  href="/dashboard"
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-container dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline text-sm font-semibold dark:font-bold shadow-glow dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:bg-primary transition-all"
+          {currentUser ? (
+            <div className="relative">
+              <button
+                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/30 text-on-surface dark:text-white hover:border-primary-container dark:hover:border-cyan-400 transition-all"
+              >
+                <div className="w-7 h-7 rounded-lg bg-primary-container/20 dark:bg-cyan-950 flex items-center justify-center text-primary dark:text-cyan-400">
+                  <User className="w-4 h-4" />
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="font-headline text-xs font-bold leading-tight truncate max-w-[120px]">
+                    {currentUser.name}
+                  </span>
+                  <span className="text-[10px] text-on-surface-variant dark:text-cyan-300 capitalize">
+                    {currentUser.role}
+                  </span>
+                </div>
+                <ChevronDown className="w-3.5 h-3.5 opacity-60 ml-1" />
+              </button>
+
+              {userDropdownOpen && (
+                <div
+                  className="absolute right-0 mt-2 w-56 rounded-2xl bg-white dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/30 shadow-xl py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                  onClick={() => setUserDropdownOpen(false)}
                 >
-                  <LayoutDashboard className="w-4 h-4" />
-                  <span>Dashboard Admin</span>
-                </Link>
-              ) : (
-                <div className="px-3.5 py-1.5 rounded-xl bg-surface-low dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/30 text-xs font-semibold text-primary dark:text-cyan-300 flex items-center gap-1.5">
-                  <User className="w-3.5 h-3.5" />
-                  <span>{user.name}</span>
+                  <div className="px-4 py-2 border-b border-surface-container-high dark:border-cyan-500/15">
+                    <p className="text-xs font-bold text-on-surface dark:text-white truncate">
+                      {currentUser.name}
+                    </p>
+                    <p className="text-[11px] text-on-surface-variant dark:text-slate-400 truncate">
+                      {currentUser.email}
+                    </p>
+                  </div>
+
+                  <Link
+                    href="/orders"
+                    className="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-on-surface dark:text-slate-200 hover:bg-surface-container dark:hover:bg-slate-800"
+                  >
+                    <ShoppingBag className="w-4 h-4 text-primary dark:text-cyan-400" />
+                    <span>Pesanan Saya</span>
+                  </Link>
+
+                  {currentUser.role === "admin" && (
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-on-surface dark:text-slate-200 hover:bg-surface-container dark:hover:bg-slate-800"
+                    >
+                      <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                      <span>Dashboard Admin</span>
+                    </Link>
+                  )}
+
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-2 px-4 py-2.5 text-xs font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 border-t border-surface-container-high dark:border-cyan-500/15 mt-1"
+                  >
+                    <LogOut className="w-4 h-4" />
+                    <span>Keluar / Logout</span>
+                  </button>
                 </div>
               )}
-              <button
-                onClick={handleLogout}
-                title="Keluar"
-                className="p-2 rounded-xl text-on-surface-variant dark:text-slate-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
-              >
-                <LogOut className="w-4 h-4" />
-              </button>
             </div>
           ) : (
             <Link
               href="/login"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-container text-white dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline text-sm font-semibold shadow-glow dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:bg-primary dark:hover:shadow-[0_0_28px_rgba(0,210,255,0.65)] hover:shadow-cyan transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary-container text-white dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] dark:text-slate-950 dark:font-bold font-headline text-sm font-semibold shadow-glow dark:shadow-[0_0_20px_rgba(0,210,255,0.4)] hover:bg-primary dark:hover:shadow-[0_0_28px_rgba(0,210,255,0.65)] hover:shadow-cyan transition-all"
             >
               <User className="w-4 h-4" />
               <span>Masuk / Login</span>
@@ -166,11 +237,11 @@ export default function Navbar() {
           <nav className="flex flex-col gap-2">
             {siteConfig.navigation.map((item) => {
               const sectionId = item.href.replace("#", "");
-              const isActive = activeSection === sectionId;
+              const isActive = pathname === "/" && activeSection === sectionId;
               return (
                 <a
                   key={item.name}
-                  href={item.href}
+                  href={getNavHref(item.href)}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-all ${
                     isActive
@@ -183,25 +254,61 @@ export default function Navbar() {
                 </a>
               );
             })}
+
+            {currentUser && (
+              <Link
+                href="/orders"
+                onClick={() => setMobileMenuOpen(false)}
+                className={`flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-all ${
+                  pathname === "/orders"
+                    ? "bg-primary-container text-white dark:bg-cyan-500/10 dark:text-cyan-300 dark:border dark:border-cyan-500/30"
+                    : "text-on-surface dark:text-slate-300 hover:bg-surface-container-low dark:hover:bg-slate-800/60"
+                }`}
+              >
+                <div className="flex items-center gap-2">
+                  <ShoppingBag className="w-5 h-5 text-primary-container dark:text-cyan-400" />
+                  <span>Pesanan Saya</span>
+                </div>
+                <ArrowRight className="w-4 h-4 opacity-70" />
+              </Link>
+            )}
+
             <div className="pt-4 border-t border-surface-container-high dark:border-cyan-500/20 mt-2 flex flex-col gap-3">
-              {user ? (
+              {currentUser ? (
                 <>
-                  {user.role === "admin" && (
+                  <div className="p-3 rounded-xl bg-surface-container dark:bg-[#121929] border border-surface-container-high dark:border-cyan-500/20 flex items-center justify-between">
+                    <div>
+                      <p className="text-sm font-bold text-on-surface dark:text-white">
+                        {currentUser.name}
+                      </p>
+                      <p className="text-xs text-on-surface-variant dark:text-slate-400">
+                        {currentUser.email}
+                      </p>
+                    </div>
+                    {currentUser.role === "admin" && (
+                      <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 text-[10px] font-bold uppercase">
+                        Admin
+                      </span>
+                    )}
+                  </div>
+
+                  {currentUser.role === "admin" && (
                     <Link
                       href="/dashboard"
                       onClick={() => setMobileMenuOpen(false)}
-                      className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary-container dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline font-semibold shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.4)]"
+                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-headline font-semibold text-sm shadow-md"
                     >
-                      <LayoutDashboard className="w-5 h-5" />
+                      <ShieldCheck className="w-4 h-4" />
                       <span>Buka Dashboard Admin</span>
                     </Link>
                   )}
+
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 font-headline font-semibold"
+                    className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 font-headline font-semibold text-sm border border-rose-200 dark:border-rose-500/30"
                   >
                     <LogOut className="w-4 h-4" />
-                    <span>Keluar ({user.name})</span>
+                    <span>Keluar / Logout</span>
                   </button>
                 </>
               ) : (
@@ -211,7 +318,7 @@ export default function Navbar() {
                   className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary-container dark:bg-gradient-to-r dark:from-[#00d2ff] dark:to-[#086288] text-white dark:text-slate-950 font-headline font-semibold shadow-md dark:shadow-[0_0_20px_rgba(0,210,255,0.4)]"
                 >
                   <User className="w-5 h-5" />
-                  <span>Masuk ke Akun</span>
+                  <span>Masuk ke Dashboard / Akun</span>
                 </Link>
               )}
             </div>

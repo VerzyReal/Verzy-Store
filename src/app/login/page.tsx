@@ -40,10 +40,11 @@ function LoginForm() {
 
       // Berhasil login
       if (data.user.role === "admin") {
-        window.location.href = redirect;
+        router.push(redirect);
       } else {
-        window.location.href = "/";
+        router.push("/");
       }
+      router.refresh();
     } catch (err: any) {
       setErrorMessage(err.message);
     } finally {

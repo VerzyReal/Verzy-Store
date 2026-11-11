@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/config/site";
 import { ChevronRight } from "lucide-react";
 
@@ -97,17 +98,13 @@ export default function ServicesSection() {
                     {game.startingPrice}
                   </span>
                 </div>
-                <a
-                  href={`https://wa.me/6281299887722?text=Halo%20Admin%20Verzy%20Store,%20saya%20ingin%20top%20up%20${encodeURIComponent(
-                    game.name
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/order?game=${game.id}`}
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-surface-container dark:bg-cyan-950/80 dark:border dark:border-cyan-500/40 text-primary dark:text-cyan-300 font-headline text-xs sm:text-sm font-semibold group-hover:bg-primary-container dark:group-hover:bg-cyan-400 group-hover:text-white dark:group-hover:text-slate-950 dark:group-hover:shadow-[0_0_15px_rgba(0,210,255,0.5)] transition-all shadow-sm"
                 >
                   <span>Top Up</span>
                   <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </a>
+                </Link>
               </div>
             </div>
           ))}
