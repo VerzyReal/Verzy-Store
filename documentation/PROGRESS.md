@@ -1,7 +1,7 @@
 # Progres Proyek - Verzy Store
 
 Terakhir diperbarui: 11 November 2026
-Posisi saat ini: **Step 3 - Sistem Pemesanan Top Up Game, Tiket Pembayaran QRIS, & Dashboard Verifikasi Admin (Selesai & Siap Dikonfirmasi)**
+Posisi saat ini: **Step 4 - Deploy ke Vercel, Kebutuhan Lanjutan & Maintenance (Sedang Berjalan)**
 
 ## Checklist
 - [x] Inisiasi (data usaha & desain terkumpul)
@@ -55,9 +55,17 @@ Posisi saat ini: **Step 3 - Sistem Pemesanan Top Up Game, Tiket Pembayaran QRIS,
     - [x] Navbar: Profil pengguna, shortcut "Pesanan Saya", dropdown akun, shortcut dashboard admin
     - [x] Services: Tombol "Top Up" pada 6 kartu game terhubung langsung ke `/order?game=...`
     - [x] Dashboard: Ringkasan total pesanan masuk & pesanan baru pada overview cards
-  - [ ] Dikonfirmasi pengguna
+  - [x] Dikonfirmasi pengguna
 - [ ] STEP 4 - Deploy & maintenance
-  - [ ] Deploy ke Vercel
+  - [x] Log pemeliharaan sistem terpadu (`/documentation/MAINTENANCE.md`)
+  - [x] Validasi sanitasi keamanan & `.gitignore` (`.env*`, `code.gs`, `setup.gs`, `public/uploads/*` terlindungi)
+  - [x] Verifikasi build produksi Next.js 14 lolos 100% tanpa error (`npm run build`)
+  - [ ] Konfirmasi kebutuhan lanjutan pengguna:
+    - [ ] Payment gateway otomatis (Midtrans / Xendit)
+    - [ ] Notifikasi otomatis WhatsApp / Email (Fonnte / Resend)
+    - [ ] Migrasi penyimpanan cloud media (Vercel Blob / Cloudinary)
+  - [ ] Panduan deployment langkah demi langkah ke Vercel
+  - [ ] Checklist Quality Assurance (QA) sebelum rilis publik
   - [ ] Dikonfirmasi pengguna
 
 ## Catatan Penting Mengenai Media (Upload Gambar)
