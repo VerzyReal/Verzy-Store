@@ -76,5 +76,22 @@
       "created_at": "2026-11-10T01:25:03.053Z",
       "updated_at": "2026-11-10T01:25:03.053Z"
     }
+  ],
+  "orders": [
+    {
+      "id": "VRZ-280326",
+      "user_id": "user_pv6cze15",
+      "game_id": "mlbb",
+      "game_name": "Mobile Legends: Bang Bang",
+      "item_name": "86 Diamonds",
+      "price": 21000,
+      "user_game_id": "23124124",
+      "zone_id": "14412",
+      "nickname": "Verzy",
+      "whatsapp": "0895329527565",
+      "status": "menunggu_konfirmasi",
+      "created_at": "2026-11-11T06:50:22.748Z",
+      "updated_at": "2026-11-11T06:50:22.748Z"
+    }
   ]
 }
